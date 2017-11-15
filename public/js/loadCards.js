@@ -4,8 +4,8 @@ let timer = false
 let currentPosition = 0
 const renderCards = () => {
   const section = document.getElementsByClassName('card-container')[currentPosition]
-  const typeOfSection = section.className.indexOf('Data') !== - 1 ? 'Data' : 'Contact'
-  fetch('/cards/' + typeOfSection)
+  const typeOfSection = section.className.indexOf('data') !== - 1 ? 'data' : 'contact'
+  fetch('/' + typeOfSection)
     .then(x => x.text())
     .then(x => {
       // this currently only works with more. Current position needs setting on manual scroll, or manual scroll disabling

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\Data;
 use Log;
 
@@ -45,20 +46,11 @@ class DataController extends Controller
         // for now, I'll just grab most recent
         Log::info($data);*/
 
-        // Contact area
-        Data::updateOrCreate([
-            'name' => 'GitHub Profile',
-            'type' => 'Contact',
-            'headline' => 'GitHub logo',
-            'caption' => 'My GitHub Profile',
-            'main_content_url' => 'https://github.com/timfenwick15',
-        ]);
-        Data::updateOrCreate([
-            'name' => 'Twitter Profile',
-            'type' => 'Contact',
-            'headline' => 'Twitter logo',
-            'caption' => 'My Twitter Profile',
-            'main_content_url' => 'https://twitter.com/timfenwick15',
-        ]);
+    }
+    public function render() {
+        $data = collect(DB::select('SELECT * FROM data'))
+            ->map(function($x){ return (array) $x; })
+            ->toArray();
+        return view('cards', ['cards' => $data]);
     }
 }

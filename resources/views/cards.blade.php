@@ -4,7 +4,7 @@
     <br>
     <div class="caption">{{ $card['caption'] }}</div>
     @if ($card['main_content_url'])
-        <a href="{{ $card['main_content_url'] }}">Link</a>
+        <a href="{{ $card['main_content_url'] }}" target="_blank">Link</a>
     @endif
   </div>
 @endforeach

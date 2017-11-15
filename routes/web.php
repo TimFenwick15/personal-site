@@ -18,8 +18,11 @@ Route::get('/', function () {
     return view('home');
 });*/
 Route::get('/', 'HomeController@index');
-Route::get('/cards/{type}', 'HomeController@cards');
-Route::get('/populate', 'DataController@populate');
+//Route::get('/cards/{type}', 'HomeController@cards');
+Route::get('/data', 'DataController@render');
+Route::get('/contact', 'ContactController@render');
+Route::get('/dataPopulate', 'DataController@populate');
+Route::get('/contactPopulate', 'ContactController@populate');
 
 Auth::routes();
 
