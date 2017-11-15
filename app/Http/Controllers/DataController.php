@@ -10,8 +10,6 @@ use Log;
 class DataController extends Controller
 {
     public function populate() {
-        // run a set of requests to populate the db
-
         // Livingroom Data
         $data = array( 'status' => false );
         $dataRequest = @file_get_contents('https://murmuring-reaches-74774.herokuapp.com/data');
@@ -35,17 +33,47 @@ class DataController extends Controller
         }
 
         // Github
-        /*$data = array( 'status' => false );
-        $dataRequest = @file_get_contents('https://api.github.com/users/timfenwick15/events');
-        Log::info($http_response_header[0]);
-        Log::info($dataRequest);
+        $data = array( 'status' => false );
+        $opts = [
+            "http" => [
+                'method' => 'GET',
+                'header' => 'User-Agent: request',
+            ]
+        ];
+        $context = stream_context_create($opts);
+        $dataRequest = @file_get_contents('https://api.github.com/users/timfenwick15/events', false, $context);
         if ($dataRequest && strpos($http_response_header[0], '200')) {
             $data = json_decode($dataRequest, true);
-            $data['status'] = true;
         }
-        // for now, I'll just grab most recent
-        Log::info($data);*/
+        Data::updateOrCreate([
+            'name' => 'GitHub',
+            'type' => 'Data',
+            'headline' => explode('/', $data[0]['repo']['name'])[1],
+            'caption' => 'Repo updated',
+            'main_content_url' => $data[0]['repo']['url']
+        ]);
 
+        // GoodReads
+        $dataRequest = @file_get_contents(
+            'https://www.goodreads.com/review/list?v=2&id=' .
+            env(GOODREADS_USER_ID) . '&key=' .
+            env(GOODREADS_KEY) . '&shelf=read&sort=date_read&per_page=5&page=1'
+        );
+        if ($dataRequest && strpos($http_response_header[0], '200')) {
+            $titleArray = explode('<title>', $dataRequest)[1];
+            $title = explode('</title>', $titleArray)[0];
+            $ratingArray = explode('<rating>', $dataRequest)[1];
+            $rating = explode('</rating>', $ratingArray)[0];
+            $linkArray = explode('<link>', $dataRequest)[1];
+            $link = explode('</link>', $linkArray)[0];
+            Data::updateOrCreate([
+                'name' => 'Goodreads',
+                'type' => 'Data',
+                'headline' => $title,
+                'caption' => 'I rated this ' . $rating . ' out of 5',
+                'main_content_url' => $link,
+            ]);
+        }
     }
     public function render() {
         $data = collect(DB::select('SELECT * FROM data'))

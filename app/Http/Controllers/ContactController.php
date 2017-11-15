@@ -9,7 +9,6 @@ use App\Contact;
 class ContactController extends Controller
 {
     public function populate() {
-        // Contact area
         Contact::updateOrCreate([
             'name' => 'GitHub Profile',
             'type' => 'Contact',
