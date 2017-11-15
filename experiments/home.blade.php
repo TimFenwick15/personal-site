@@ -58,6 +58,14 @@
                 margin-bottom: 30px;
             }
 
+            .top-bar {
+                display: block;
+                width: 80%;
+                height: 100px;
+                overflow: hidden;
+                background-color: rgba(192,192,192,1.0);
+                margin: auto;
+            }
             .welcome-pane {
                 width: 100%;
                 height: 130vh;
