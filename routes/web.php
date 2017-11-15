@@ -19,3 +19,8 @@ Route::get('/', function () {
 });*/
 Route::get('/', 'HomeController@index');
 Route::get('/cards', 'HomeController@cards');
+Route::get('/populate', 'DataController@populate');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
