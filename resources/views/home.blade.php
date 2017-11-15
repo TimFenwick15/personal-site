@@ -21,29 +21,19 @@
                 height: 100vh;
                 margin: 0;
             }
-
-            .full-height {
-                height: 100vh;
-            }
-
             .flex-center {
                 align-items: center;
                 display: flex;
                 justify-content: center;
             }
-
             .position-ref {
                 position: relative;
             }
-
             .top-right {
                 position: absolute;
                 right: 10px;
                 top: 18px;
             }
-
-
-
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -53,28 +43,21 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-
             .m-b-md {
                 margin-bottom: 30px;
             }
 
-            .welcome-pane {
-                width: 100%;
+            .page {
                 height: 130vh;
+            }
+            .welcome-pane {
                 background-color: pink;
-                z-index: -2;
             }
             .card-pane {
                 background-color: #ffffff;
-                height: 130vh;                
-                position: relative;
             }
             .about-pane {
-                width: 100%;
-                height: 130vh;
                 background-color: #ADD8E6;
-                position: relative;
-                z-index: 2;
             }
             .content {
                 font-size: 3rem;
@@ -102,7 +85,6 @@
                 position: fixed;
                 left: 50%;
                 top:95%;
-                z-index: 1;
             }
             .invisible {
                 opacity: 0;

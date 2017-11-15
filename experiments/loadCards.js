@@ -4,7 +4,7 @@ let timer = false
 let currentPosition = 0
 const renderCards = () => {
   console.log('fetching cards...')
-  fetch('/cards.html')
+  fetch('cards.html')
     .then(x => {
       console.log('parsing cards...')
       return x.text()
