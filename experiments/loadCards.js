@@ -26,6 +26,30 @@ const renderCards = () => {
 }
 window.addEventListener('scroll', scrollHandler)*/
 
+const whichSectionIsOnScreen = () => {
+  const sectionDistances = Array.from(document.getElementsByClassName('card-container')).map(x => x.scrollTop)
+  //console.log(sectionDistances)
+  return 1
+}
+
+let scrollCheckInterval
+const scrollHandler_interval = () => {
+  if (!scrollCheckInterval) {
+    let lastHeightInPage = Array.from(document.getElementsByClassName('content')).map(x => x.offsetTop)
+    scrollCheckInterval = setInterval(() => {
+      if (lastHeightInPage === document.body.scrollTop) {
+        //renderCards()
+        clearInterval(scrollCheckInterval)
+        scrollCheckInterval = null
+        return 0
+      }
+      console.log('last: ', lastHeightInPage + ', scrollTop: ' + document.body.scrollTop)
+      lastHeightInPage = document.body.scrollTop
+    }, 200)
+  }
+}
+window.addEventListener('scroll', scrollHandler_interval)
+
 document.getElementById('more').addEventListener('click', () => {
   document.getElementsByClassName('page')[++currentPosition].scrollIntoView({
     behavior: 'smooth'
