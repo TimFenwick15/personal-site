@@ -79,6 +79,12 @@
                 border-radius: 4px;
                 width: 30%;
             }
+            .headline {
+                font-size: 2rem;
+            }
+            .caption {
+                font-size: 1rem;
+            }
             #more {
                 position: fixed;
                 left: 50%;
@@ -109,6 +115,12 @@
                 opacity: 0;
                 transition: opacity 1s ease-in-out;
             }
+            .red {
+                background-color: #ADD8E6;
+            }
+            .blue {
+                background-color: #FF5C5C;
+            }
         </style>
     </head>
     <body>
@@ -120,12 +132,12 @@
         <div class="card-pane page">
             <div id="feed" class="content" tabindex="1">Here's what I've been up to.</div>
             <a class="nav-link" href="#contact" tabindex="1">Press Tab to view this Section. Press Enter to go to the next Section</a>
-            <div class="card-container"></div>
+            <div class="card-container Data"></div>
         </div>
         <div class='about-pane page'>
             <div id="contact" class="content" tabindex="1">You can find me here.</div>
             <a class="nav-link" href="#feed" tabindex="1">Press Tab to view this Section. Press Enter to go to the previous Section</a>
-            <div class="card-container"></div>
+            <div class="card-container Contact"></div>
         </div>
     <script src="{{ asset('js/loadCards.js') }}"></script>
     </body>
