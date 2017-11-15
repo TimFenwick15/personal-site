@@ -69,7 +69,6 @@
                 display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
-                box-sizing: border-box;
             }
             .card {
                 position: relative;
@@ -79,7 +78,6 @@
                 box-shadow: rgba(0, 0, 0, 0.5) 0 0 8px 0;
                 border-radius: 4px;
                 width: 30%;
-                float: left;
             }
             #more {
                 position: fixed;
@@ -88,7 +86,7 @@
             }
             .nav-link {
                 position: relative;
-                left: -1000px;
+                left: -9000px;
                 width: 1px;
                 height: 1px;
                 overflow: hidden;
@@ -115,7 +113,7 @@
     </head>
     <body>
         <div class="welcome-pane page">
-            <div class="content" tabindex="1">This is<br>Some placeholder text.</div>
+            <div id="introduction" class="content" tabindex="1">This is<br>Some placeholder text.</div>
             <div class="card-container"></div>
             <button id="more" tabindex="-1">More</button>
         </div>
