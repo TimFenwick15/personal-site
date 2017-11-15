@@ -86,6 +86,20 @@
                 left: 50%;
                 top:95%;
             }
+            .nav-link {
+                position: relative;
+                left: -1000px;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                text-align: left;
+            }
+            .nav-link:focus {
+                left: 0;
+                z-index: 1;
+                width: 75%;
+                height: auto;
+            }
             .invisible {
                 opacity: 0;
             }
@@ -100,18 +114,20 @@
         </style>
     </head>
     <body>
-        <div class='welcome-pane page'>
-            <div class='content'>Hello.<br>My name is Tim.</div>
-            <div class='card-container'></div>
-            <button id='more'>More</button>
+        <div class="welcome-pane page">
+            <div class="content" tabindex="1">Hello.<br>My name is Tim.</div>
+            <div class="card-container"></div>
+            <button id="more" tabindex="-1">More</button>
         </div>
-        <div class='card-pane page'>
-            <div class='content'>Here's what I've been up to.</div>
-            <div class='card-container'></div>
+        <div class="card-pane page">
+            <div id="feed" class="content" tabindex="1">Here's what I've been up to.</div>
+            <a class="nav-link" href="#contact" tabindex="1">Press Tab to view this Section. Press Enter to go to the next Section</a>
+            <div class="card-container"></div>
         </div>
         <div class='about-pane page'>
-            <div class='content'>You can find me here.</div>
-            <div class='card-container'></div>
+            <div id="contact" class="content" tabindex="1">You can find me here.</div>
+            <a class="nav-link" href="#feed" tabindex="1">Press Tab to view this Section. Press Enter to go to the previous Section</a>
+            <div class="card-container"></div>
         </div>
     <script src="{{ asset('js/loadCards.js') }}"></script>
     </body>
