@@ -18,3 +18,4 @@ Route::get('/', function () {
     return view('home');
 });*/
 Route::get('/', 'HomeController@index');
+Route::get('/cards', 'HomeController@cards');

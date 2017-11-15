@@ -20,11 +20,6 @@
                 font-size: 1.5rem;
                 height: 100vh;
                 margin: 0;
-                background-attachment: fixed;
-                background-image: url({{asset('image/background.jpg')}});
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
             }
 
             .full-height {
@@ -47,13 +42,7 @@
                 top: 18px;
             }
 
-            .content {
-                text-align: center;
-            }
 
-            .title {
-                font-size: 84px;
-            }
 
             .links > a {
                 color: #636b6f;
@@ -86,35 +75,86 @@
                 background-color: rgba(192,192,192,1.0);
                 margin: auto;
             }
+            .welcome-pane {
+                width: 100%;
+                height: 100vh;
+                background-color: pink;
+                z-index: -2;
+            }
+            .card-pane {
+                background-color: #ffffff;
+                height: 100vh;                
+                position: relative;
+            }
+            .about-pane {
+                width: 100%;
+                height: 100vh;
+                background-color: #ADD8E6;
+                position: relative;
+                z-index: 2;
+            }
+            .title {
+                font-size: 4rem;
+                position: fixed;
+            }
+            .content {
+                font-size: 3rem;
+                position: absolute;
+                opacity: 1;
+            }
             .card-container {
-                display: block;
-                width: 80%;
-                height: 600px;
-                margin: auto;
-                text-align: center;
+                /*background-color: #ffffff;
+                height: 100vh;                
+                position: relative;*/
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                box-sizing: border-box;
             }
             .card {
-                width: 45%;
-                height: 250px;
-                background-color: rgba(255,0,0,1.0);
-                box-shadow: 2px 2px 1px #000000;
-                display: inline-block;
-                margin: 10px;
+                position: relative;
+                margin: 20px;
+                padding-bottom: 30px;
+                background: #fefff9;
+                box-shadow: rgba(0, 0, 0, 0.5) 0 0 8px 0;
+                border-radius: 4px;
+                width: 30%;
                 float: left;
             }
+            #more {
+                position: fixed;
+                left: 50%;
+                top:95%;
+                z-index: 1;
+            }
             .invisible {
-                visibility: hidden;
+                opacity: 0;
+            }
+            .transition-in {
+                opacity: 1;
+                transition: opacity 1s ease-in-out;
+            }
+            .transition-out {
+                opacity: 0;
+                transition: opacity 1s ease-in-out;
             }
         </style>
     </head>
     <body>
-        <div class='top-bar'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <div class='welcome-pane page'>
+            <div class='title'>Hello.<br>My name is Tim.</div>
+            <div class='card-container'></div>
+            <div class='content'></div>
+            <button id='more'>More</button>
         </div>
-        <div class='card-container'>
-            @foreach ($cards as $card)
-            <div class='card'>{{ $card['text'] }}</div>
-            @endforeach
+        <div class='card-pane page'>
+            <div class='content'>Here's what I've been up to.</div>
+            <div class='card-container'></div>
         </div>
+        <div class='about-pane page'>
+            <div class='content'>You can find me here.</div>
+            <div class='card-container'></div>
+        </div>
+    <script src="{{ asset('js/loadCards.js') }}"></script>
     </body>
 </html>
