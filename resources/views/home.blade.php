@@ -21,34 +21,8 @@
                 height: 100vh;
                 margin: 0;
             }
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-            .position-ref {
-                position: relative;
-            }
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-
             .page {
-                height: 130vh;
+                min-height: 130vh;
             }
             .welcome-pane {
                 background-color: pink;
@@ -63,7 +37,7 @@
                 font-size: 3rem;
                 position: sticky;
                 top: -1px;
-                opacity: 1;
+                background-color: inherit;
             }
             .card-container {
                 display: flex;
@@ -84,6 +58,35 @@
             .caption {
                 font-size: 1rem;
             }
+            .card > .image-circle {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin: 5px;
+                overflow: hidden;
+                display: inline-block;
+            }
+            img {
+                width: 50px;
+                height: auto;
+                margin: 0 auto;
+            }
+            .card > .headline {
+                height: 50px;
+                width: 75%;
+                font-size: 1rem;
+                display: inline-block;
+                vertical-align: top;
+            }
+            .card > .caption {
+                font-size: 1rem;
+                display: block;
+            }
+            .card > .link {
+                color: blue;
+                font-size: 1rem;
+                display: block;
+            }
             @media only screen and (orientation: portrait) {
                 .card {
                     width: 80%;
@@ -92,7 +95,7 @@
             #more {
                 position: fixed;
                 left: 50%;
-                top:95%;
+                bottom: 5%;
             }
             .nav-link {
                 position: relative;
@@ -114,16 +117,6 @@
             .transition-in {
                 opacity: 1;
                 transition: opacity 1s ease-in-out;
-            }
-            .transition-out {
-                opacity: 0;
-                transition: opacity 1s ease-in-out;
-            }
-            .red {
-                background-color: #ADD8E6;
-            }
-            .blue {
-                background-color: #FF5C5C;
             }
         </style>
     </head>

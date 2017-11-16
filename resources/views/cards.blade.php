@@ -1,14 +1,10 @@
 @foreach ($cards as $card)
-  <div class="card invisible {{ $card['type'] === 'Data' ? 'red' : 'blue' }}" tabindex="1">
-    @if ($card['image_url'])
-      <img src="{{ $card['image_url'] }}" height="50"></img>
-    @else
-      <div class="headline">{{ $card['headline'] }}</div>
-    @endif
-    <br>
+  <div class="card invisible" tabindex="1">
+    <div class="image-circle"><img src="{{ $card['image_url'] || asset('image/placeholder.png') }}"></img></div>
+    <div class="headline">{{ $card['headline'] }}</div>
     <div class="caption">{{ $card['caption'] }}</div>
     @if ($card['main_content_url'])
-        <a href="{{ $card['main_content_url'] }}" target="_blank">Read more...</a>
+      <div class="link"><a href="{{ $card['main_content_url'] }}" target="_blank">Read more...</a></div>
     @endif
   </div>
 @endforeach
