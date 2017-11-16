@@ -50,7 +50,8 @@ class DataController extends Controller
             'type' => 'Data',
             'headline' => explode('/', $data[0]['repo']['name'])[1],
             'caption' => 'Repo updated',
-            'main_content_url' => $data[0]['repo']['url']
+            'main_content_url' => str_replace('api.', '', $data[0]['repo']['url']),
+            'image_url' => 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'
         ]);
 
         // GoodReads
@@ -62,16 +63,22 @@ class DataController extends Controller
         if ($dataRequest && strpos($http_response_header[0], '200')) {
             $titleArray = explode('<title>', $dataRequest)[1];
             $title = explode('</title>', $titleArray)[0];
+
             $ratingArray = explode('<rating>', $dataRequest)[1];
             $rating = explode('</rating>', $ratingArray)[0];
+
             $linkArray = explode('<link>', $dataRequest)[1];
             $link = explode('</link>', $linkArray)[0];
+
+            $imageArray = explode('<image_url>', $dataRequest)[1];
+            $image = explode('</image_url>', $imageArray)[0];
             Data::updateOrCreate([
                 'name' => 'Goodreads',
                 'type' => 'Data',
                 'headline' => $title,
                 'caption' => 'I rated this ' . $rating . ' out of 5',
                 'main_content_url' => $link,
+                'image_url' => $image
             ]);
         }
     }
