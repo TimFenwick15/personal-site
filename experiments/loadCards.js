@@ -5,15 +5,12 @@ let currentPosition = 0
 const renderCards = () => {
   const section = document.getElementsByClassName('card-container')[currentPosition]
   const typeOfSection = section.className.indexOf('data') !== - 1 ? 'data' : 'contact' // this shouldn't be decided by a CSS class (?)
-  console.log('fetching cards...')
   fetch('cards.html')
     .then(x => x.text())
     .then(x => {
-      console.log('got cards!')
       // this currently only works with more. Current position needs setting on manual scroll, or manual scroll disabling
       document.getElementsByClassName('card-container')[currentPosition].innerHTML = x
-      //setTimeout(() => document.getElementsByClassName('content')[currentPosition].className += ' transition-out', 2000)
-      setTimeout(() => Array.from(document.getElementsByClassName('card')).forEach(card => card.className += ' transition-in'), 2000)
+      Array.from(document.getElementsByClassName('card')).forEach(card => card.className += ' transition-in')
     })
   //window.removeEventListener('scroll', scrollHandler)
 }

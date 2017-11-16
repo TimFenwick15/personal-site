@@ -10,8 +10,7 @@ const renderCards = () => {
     .then(x => {
       // this currently only works with more. Current position needs setting on manual scroll, or manual scroll disabling
       document.getElementsByClassName('card-container')[currentPosition].innerHTML = x
-      //setTimeout(() => document.getElementsByClassName('content')[currentPosition].className += ' transition-out', 2000)
-      setTimeout(() => Array.from(document.getElementsByClassName('card')).forEach(card => card.className += ' transition-in'), 2000)
+      Array.from(document.getElementsByClassName('card')).forEach(card => card.className += ' transition-in')
     })
   //window.removeEventListener('scroll', scrollHandler)
 }
@@ -24,7 +23,7 @@ const renderCards = () => {
 window.addEventListener('scroll', scrollHandler)*/
 
 document.getElementById('more').addEventListener('click', () => {
-  document.getElementsByClassName('page')[++currentPosition].scrollIntoView({
+  document.getElementsByClassName('content')[++currentPosition].scrollIntoView({
     block: "start", inline: "nearest", behavior: 'smooth'
   })
   renderCards()
