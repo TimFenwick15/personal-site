@@ -10,7 +10,13 @@ const renderCards = () => {
     .then(x => {
       // this currently only works with more. Current position needs setting on manual scroll, or manual scroll disabling
       document.getElementsByClassName('card-container')[currentPosition].innerHTML = x
-      Array.from(document.getElementsByClassName('card')).forEach(card => card.className += ' transition-in')
+
+      // We need a short delay here or the styles apply in the wrong order
+      setTimeout(
+        () => Array.from(document.getElementsByClassName('card'))
+          .forEach(card => card.className += ' transition-in'),
+          100
+        )
     })
   //window.removeEventListener('scroll', scrollHandler)
 }

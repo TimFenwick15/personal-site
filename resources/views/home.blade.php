@@ -52,12 +52,6 @@
                 border-radius: 4px;
                 width: 30%;
             }
-            .headline {
-                font-size: 2rem;
-            }
-            .caption {
-                font-size: 1rem;
-            }
             .card > .image-circle {
                 width: 50px;
                 height: 50px;
@@ -72,22 +66,30 @@
                 margin: 0 auto;
             }
             .card > .headline {
-                height: 50px;
-                width: 75%;
-                font-size: 1rem;
+                min-height: 50px;
+                width: 70%;
+                margin: 5px;
+                font-size: 0.75rem;
                 display: inline-block;
                 vertical-align: top;
+                line-height: 50px;
             }
             .card > .caption {
-                font-size: 1rem;
+                font-size: 0.75rem;
                 display: block;
+                margin: 5px 5px 5px 70px;
             }
-            .card > .link {
+            .read-more {
+                margin: 5px 5px 5px 70px;
+            }
+            .read-more > a {
                 color: blue;
-                font-size: 1rem;
+                font-size: 0.75rem;
+                text-decoration: none;
                 display: block;
             }
-            @media only screen and (orientation: portrait) {
+            /* @media only screen and (orientation: portrait) { */
+            @media only screen and (max-width: 900px) {
                 .card {
                     width: 80%;
                 }
@@ -116,7 +118,7 @@
             }
             .transition-in {
                 opacity: 1;
-                transition: opacity 1s ease-in-out;
+                transition: opacity 0.5s ease-in-out;
             }
         </style>
     </head>
