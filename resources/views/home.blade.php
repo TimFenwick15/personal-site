@@ -84,6 +84,11 @@
             .caption {
                 font-size: 1rem;
             }
+            @media only screen and (orientation: portrait) {
+                .card {
+                    width: 80%;
+                }
+            }
             #more {
                 position: fixed;
                 left: 50%;
