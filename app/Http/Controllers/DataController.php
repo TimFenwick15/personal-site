@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use DB;
 use App\Data;
 use Log;
+use DateTime;
 
 class DataController extends Controller
 {
     public function populate() {
+
         // Livingroom Data
         $data = array( 'status' => false );
         $dataRequest = @file_get_contents('https://murmuring-reaches-74774.herokuapp.com/data');
@@ -22,13 +24,15 @@ class DataController extends Controller
                 'name' => 'Temperature',
                 'type' => 'Data',
                 'headline' => $data['temperature'] . ' &deg;C',
-                'caption' => 'The temperature of my living room',
+                'caption' => 'The temperature reading of my living room',
+                'source_update_time' => $data['time']
             ]);
             Data::updateOrCreate([
                 'name' => 'Light',
                 'type' => 'Data',
                 'headline' => $data['light'] . ' light',
-                'caption' => 'The light of my living room',
+                'caption' => 'The light reading of my living room',
+                'source_update_time' => $data['time']
             ]);
         }
 
@@ -51,7 +55,8 @@ class DataController extends Controller
             'headline' => explode('/', $data[0]['repo']['name'])[1],
             'caption' => 'Repo updated',
             'main_content_url' => str_replace('/repos', '', str_replace('api.', '', $data[0]['repo']['url'])),
-            'image_url' => 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'
+            'image_url' => 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png',
+            'source_update_time' => str_replace('Z', '', str_replace('T', '', $data[0]['created_at']))
         ]);
 
         // GoodReads
@@ -61,6 +66,7 @@ class DataController extends Controller
             env(GOODREADS_KEY) . '&shelf=read&sort=date_read&per_page=5&page=1'
         );
         if ($dataRequest && strpos($http_response_header[0], '200')) {
+            Log::info($dataRequest);
             $titleArray = explode('<title>', $dataRequest)[1];
             $title = explode('</title>', $titleArray)[0];
 
@@ -72,13 +78,23 @@ class DataController extends Controller
 
             $imageArray = explode('<image_url>', $dataRequest)[1];
             $image = explode('</image_url>', $imageArray)[0];
+
+            // Goodreads is using a fun date format... We have to convert:
+            // Sat Oct 07 17:21:25 -0700 2017
+            // into:
+            // 2017-10-07 17:21:25
+            $dateArray = explode('<read_at>', $dataRequest)[1];
+            $dateString = explode('</read_at>', $dateArray)[0];
+            $dateObject = DateTime::createFromFormat('D M d H:i:s e Y', $dateString);
+            $formattedDate = get_object_vars($dateObject)['date'];
             Data::updateOrCreate([
                 'name' => 'Goodreads',
                 'type' => 'Data',
                 'headline' => $title,
                 'caption' => 'I rated this ' . $rating . ' out of 5',
                 'main_content_url' => $link,
-                'image_url' => $image
+                'image_url' => $image,
+                'source_update_time' => $formattedDate
             ]);
         }
     }

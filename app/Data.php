@@ -8,6 +8,6 @@ class Data extends Model
 {
     protected $table = 'data';
     protected $fillable = [
-        'name', 'type', 'headline', 'caption', 'main_content_url', 'image_url'
+        'name', 'type', 'headline', 'caption', 'main_content_url', 'image_url', 'source_update_time'
     ];
 }

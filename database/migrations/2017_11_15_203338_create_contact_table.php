@@ -22,6 +22,7 @@ class CreateContactTable extends Migration
             $table->string('type')->nullable(); // almost certainly will drop this
             $table->string('main_content_url')->nullable();
             $table->string('image_url')->nullable();
+            $table->string('source_update_time')->nullable();
         });
     }
 
