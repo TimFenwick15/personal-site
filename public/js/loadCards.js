@@ -5,6 +5,8 @@ let currentPosition = 0
 const renderCards = () => {
   const section = document.getElementsByClassName('card-container')[currentPosition]
   const typeOfSection = section.className.indexOf('data') !== - 1 ? 'data' : 'contact'
+  const loading = document.getElementsByClassName('loading')[0]
+  loading.className += ' visible'
   fetch('/' + typeOfSection)
     .then(x => x.text())
     .then(x => {
@@ -13,10 +15,11 @@ const renderCards = () => {
 
       // We need a short delay here or the styles apply in the wrong order
       setTimeout(
-        () => Array.from(document.getElementsByClassName('card'))
-          .forEach(card => card.className += ' transition-in'),
-          100
-        )
+        () => {
+          loading.className += ' transition-out'
+          Array.from(document.getElementsByClassName('card'))
+            .forEach(card => card.className += ' transition-in')
+        }, 100)
     })
   //window.removeEventListener('scroll', scrollHandler)
 }

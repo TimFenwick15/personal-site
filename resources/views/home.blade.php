@@ -113,11 +113,26 @@
                 width: 75%;
                 height: auto;
             }
+            .loading {
+                width: 100%;
+                text-align: center;
+                font-size: 3rem;
+                position: fixed;
+                /* left: 50%; */
+                top: 50%;
+            }
             .invisible {
                 opacity: 0;
             }
+            .visible {
+                opacity: 1;
+            }
             .transition-in {
                 opacity: 1;
+                transition: opacity 0.5s ease-in-out;
+            }
+            .transition-out {
+                opacity: 0;
                 transition: opacity 0.5s ease-in-out;
             }
         </style>
@@ -138,6 +153,7 @@
             <a class="nav-link" href="#feed" tabindex="1">Press Tab to view this Section. Press Enter to go to the previous Section</a>
             <div class="card-container contact"></div>
         </div>
+        <div class="loading invisible">Loading...</loading>
     <script src="{{ asset('js/loadCards.js') }}"></script>
     </body>
 </html>
