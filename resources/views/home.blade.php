@@ -118,14 +118,10 @@
                 text-align: center;
                 font-size: 3rem;
                 position: fixed;
-                /* left: 50%; */
                 top: 50%;
             }
             .invisible {
                 opacity: 0;
-            }
-            .visible {
-                opacity: 1;
             }
             .transition-in {
                 opacity: 1;

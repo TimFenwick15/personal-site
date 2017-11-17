@@ -6,14 +6,13 @@ const renderCards = () => {
   const section = document.getElementsByClassName('card-container')[currentPosition]
   const typeOfSection = section.className.indexOf('data') !== - 1 ? 'data' : 'contact'
   const loading = document.getElementsByClassName('loading')[0]
-  loading.className += ' visible'
+  loading.className = 'loading'
   fetch('/' + typeOfSection)
     .then(x => x.text())
     .then(x => {
-      // this currently only works with more. Current position needs setting on manual scroll, or manual scroll disabling
       document.getElementsByClassName('card-container')[currentPosition].innerHTML = x
 
-      // We need a short delay here or the styles apply in the wrong order
+      // We need a short delay here or the content it rendered before the styles apply
       setTimeout(
         () => {
           loading.className += ' transition-out'
