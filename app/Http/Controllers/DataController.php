@@ -56,7 +56,7 @@ class DataController extends Controller
             'caption' => 'Repo updated',
             'main_content_url' => str_replace('/repos', '', str_replace('api.', '', $data[0]['repo']['url'])),
             'image_url' => 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png',
-            'source_update_time' => str_replace('Z', '', str_replace('T', '', $data[0]['created_at']))
+            'source_update_time' => str_replace('Z', '', str_replace('T', ' ', $data[0]['created_at']))
         ]);
 
         // GoodReads
@@ -99,7 +99,7 @@ class DataController extends Controller
         }
     }
     public function render() {
-        $data = collect(DB::select('SELECT * FROM data'))
+        $data = collect(DB::select('SELECT * FROM data ORDER BY source_update_time DESC'))
             ->map(function($x){ return (array) $x; })
             ->toArray();
         return view('cards', ['cards' => $data]);
