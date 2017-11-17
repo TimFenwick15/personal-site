@@ -136,17 +136,16 @@
     <body>
         <div class="welcome-pane page">
             <div id="introduction" class="content" tabindex="1">Hello.<br>My name is Tim.</div>
-            <div class="card-container"></div>
         </div>
         <div class="card-pane page">
-            <div id="feed" class="content" tabindex="1">Here's what I've been up to.</div>
+            <div id="feed" class="content data" tabindex="1">Here's what I've been up to.</div>
             <a class="nav-link" href="#contact" tabindex="1">Press Tab to view this Section. Press Enter to go to the next Section</a>
-            <div class="card-container data"></div>
+            <div class="card-container"></div>
         </div>
         <div class='about-pane page'>
-            <div id="contact" class="content" tabindex="1">You can find me here.</div>
+            <div id="contact" class="content contact" tabindex="1">You can find me here.</div>
             <a class="nav-link" href="#feed" tabindex="1">Press Tab to view this Section. Press Enter to go to the previous Section</a>
-            <div class="card-container contact"></div>
+            <div class="card-container"></div>
         </div>
         <button id="more" tabindex="-1">More</button>
         <div class="loading invisible">Loading...</loading>
