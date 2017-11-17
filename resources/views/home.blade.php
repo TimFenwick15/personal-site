@@ -17,7 +17,6 @@
                 color: #000000;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
-                font-size: 1.5rem;
                 height: 100vh;
                 margin: 0;
             }
@@ -34,7 +33,7 @@
                 background-color: #ADD8E6;
             }
             .content {
-                font-size: 3rem;
+                font-size: 4rem;
                 position: sticky;
                 top: -1px;
                 background-color: inherit;
@@ -69,13 +68,11 @@
                 min-height: 50px;
                 width: 70%;
                 margin: 5px;
-                font-size: 0.75rem;
                 display: inline-block;
                 vertical-align: top;
                 line-height: 50px;
             }
             .card > .caption {
-                font-size: 0.75rem;
                 display: block;
                 margin: 5px 5px 5px 70px;
             }
@@ -84,7 +81,6 @@
             }
             .read-more > a {
                 color: blue;
-                font-size: 0.75rem;
                 text-decoration: none;
                 display: block;
             }
@@ -92,6 +88,9 @@
             @media only screen and (max-width: 900px) {
                 .card {
                     width: 80%;
+                }
+                .content {
+                    font-size: 2rem;
                 }
             }
             #more {
@@ -116,7 +115,6 @@
             .loading {
                 width: 100%;
                 text-align: center;
-                font-size: 3rem;
                 position: fixed;
                 top: 50%;
             }
@@ -148,7 +146,7 @@
             <div class="card-container"></div>
         </div>
         <button id="more" tabindex="-1">More</button>
-        <div class="loading invisible">Loading...</loading>
+        <div class="loading invisible">Loading...</div>
     <script src="{{ asset('js/loadCards.js') }}"></script>
     </body>
 </html>
