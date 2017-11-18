@@ -72,13 +72,17 @@ class DataController extends Controller
         );
         if ($dataRequest && strpos($http_response_header[0], '200')) {
             for ($i = 0; $i < $numberOfRecords; $i++) {
+
+                // php built in XML parsers don't like Goodreads data so we'll parse the response by hand
                 $titleArray = explode('<title>', $dataRequest)[$i + 1];
                 $title = explode('</title>', $titleArray)[0];
 
                 $ratingArray = explode('<rating>', $dataRequest)[$i + 1];
                 $rating = explode('</rating>', $ratingArray)[0];
 
-                $linkArray = explode('<link>', $dataRequest)[$i + 1];
+                // There are a few <link> tags, the one we want always follows a <large_image_url/>
+                $getCorrectLinkArray = explode('<large_image_url/>', $dataRequest)[$i + 1];
+                $linkArray = explode('<link>', $getCorrectLinkArray)[1];
                 $link = explode('</link>', $linkArray)[0];
 
                 $imageArray = explode('<image_url>', $dataRequest)[$i + 1];
