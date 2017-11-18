@@ -17,7 +17,7 @@ class CreateDataTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name');
-            $table->string('headline');
+            $table->string('headline')->unique();
             $table->string('caption');
             $table->string('type')->nullable();
             $table->string('main_content_url')->nullable();

@@ -5,6 +5,9 @@
     </div>
     <div class="headline">{{ $card['headline'] }}</div>
     <div class="caption">{{ $card['caption'] }}</div>
+    @if ($card['source_update_time'])
+      <div class="caption">Updated: {{ $card['source_update_time'] }}</div>
+    @endif
     @if ($card['main_content_url'])
       <div class="read-more"><a href="{{ $card['main_content_url'] }}" target="_blank">Read more...</a></div>
     @endif
