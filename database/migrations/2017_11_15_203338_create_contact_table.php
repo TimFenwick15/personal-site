@@ -39,7 +39,7 @@ class CreateContactTable extends Migration
             'headline' => 'Twitter',
             'caption' => 'My Twitter Profile',
             'main_content_url' => 'https://twitter.com/timfenwick15',
-            'image_url' => asset('image/Twitter_Logo_Blue.png')
+            'image_url' => asset('image/Twitter_Logo_Blue.svg')
         ]);
         Contact::create([
             'name' => 'LinkedIn Profile',
