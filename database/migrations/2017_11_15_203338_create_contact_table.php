@@ -47,6 +47,7 @@ class CreateContactTable extends Migration
             'headline' => 'LinkedIn',
             'caption' => 'My LinkedIn Profile',
             'main_content_url' => 'https://www.linkedin.com/in/timothy-fenwick-0a23039b/',
+            'image_url' => asset('image/linkedin.png')
         ]);
     }
 
