@@ -113,6 +113,6 @@ class DataController extends Controller
         $data = collect(DB::select('SELECT * FROM data ORDER BY source_update_time DESC'))
             ->map(function($x){ return (array) $x; })
             ->toArray();
-        return view('cards', ['cards' => $data]);
+        return view('cards', ['cards' => $data, 'visible' => false]);
     }
 }

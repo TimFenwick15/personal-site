@@ -12,6 +12,6 @@ class ContactController extends Controller
         $data = collect(DB::select('SELECT * FROM contact ORDER BY name'))
             ->map(function($x){ return (array) $x; })
             ->toArray();
-        return view('cards', ['cards' => $data]);
+        return view('cards', ['cards' => $data, 'visible' => false]);
     }
 }

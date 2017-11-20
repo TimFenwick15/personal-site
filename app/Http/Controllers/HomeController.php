@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use Log;
 use App\Data;
+use App\Contact;
 
 class HomeController extends Controller
 {
@@ -26,6 +26,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home', ['serverRender' => false]);
+    }
+    public function serverRendered()
+    {
+        $data = collect(DB::select('SELECT * FROM data ORDER BY source_update_time DESC'))
+            ->map(function($x){ return (array) $x; })
+            ->toArray();
+        $contact = collect(DB::select('SELECT * FROM contact ORDER BY name'))
+            ->map(function($x){ return (array) $x; })
+            ->toArray();
+        return view('home', ['serverRender' => true, 'data' => $data, 'contact' => $contact]);
     }
 }

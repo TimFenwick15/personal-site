@@ -95,8 +95,10 @@
             }
             #more {
                 position: fixed;
-                left: 50%;
-                bottom: 5%;
+                /* left: 50%;
+                bottom: 5%; */
+                top: 0%;
+                right: 0%;
             }
             .nav-link {
                 position: relative;
@@ -132,6 +134,11 @@
         </style>
     </head>
     <body>
+        @if (!$serverRender)
+            <noscript>
+                <p>This site is best viewed with Javascript. If you are unable to turn on Javascript, please use this <a href="/home">site</a>.</p>
+            </noscript>
+        @endif
         <div class="intro-pane page">
             <div id="introduction" class="content" tabindex="1">Hello.<br>My name is Tim.</div>
         </div>
@@ -139,17 +146,27 @@
         <div class="feed-pane page">
             <div id="feed" class="content data" tabindex="1">Here's what I've been up to.</div>
             <a class="nav-link" href="#contact" tabindex="1">Press Tab to view this Section. Press Enter to go to the next Section</a>
-            <div class="card-container"></div>
+            <div class="card-container">
+                @if ($serverRender)
+                    @include('cards', ['cards' => $data, 'visible' => true])
+                @endif
+            </div>
         </div>
 
         <div class='contact-pane page'>
             <div id="contact" class="content contact" tabindex="1">You can find me here.</div>
             <a class="nav-link" href="#feed" tabindex="1">Press Tab to view this Section. Press Enter to go to the previous Section</a>
-            <div class="card-container"></div>
+            <div class="card-container">
+                @if ($serverRender)
+                    @include('cards', ['cards' => $contact, 'visible' => true])
+                @endif
+            </div>
         </div>
 
-        <button id="more" tabindex="-1">More</button>
+        <button id="more" tabindex="-1" style="display:none">More</button>
         <div class="loading invisible">Loading...</div>
-    <script src="{{ asset('js/script.js') }}"></script>
+    @if (!$serverRender)
+        <script src="{{ asset('js/script.js') }}"></script>
+    @endif
     </body>
 </html>
