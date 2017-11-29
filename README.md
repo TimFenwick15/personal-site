@@ -19,3 +19,7 @@ An advantage of my approach is the initial page load is vastly improved by lazy 
 A disadvantage of my lazy loaded content is the page may not be fully loaded if a user it using the tab key to navigate the page. I haven't yet found a good solution to this.
 
 I am using 'Skip to content' links which toggle to visible using CSS if a user is using tab to navigate the page.
+
+### Problems
+Currently, if you visit /logout while not authenticated, you get an error page.
+It's not that this is something I expect a user to do, but I'd rather the app didn't blow up if someone attempts this.

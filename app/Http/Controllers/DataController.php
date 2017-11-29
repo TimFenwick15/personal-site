@@ -92,7 +92,7 @@ class DataController extends Controller
                 // Sat Oct 07 17:21:25 -0700 2017
                 // into:
                 // 2017-10-07 17:21:25
-                $dateArray = explode('<read_at>', $dataRequest)[1];
+                $dateArray = explode('<read_at>', $dataRequest)[$i + 1];
                 $dateString = explode('</read_at>', $dateArray)[0];
                 $dateObject = DateTime::createFromFormat('D M d H:i:s e Y', $dateString);
                 $formattedDate = explode('.', get_object_vars($dateObject)['date'])[0];
