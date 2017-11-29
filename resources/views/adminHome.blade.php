@@ -134,12 +134,19 @@
         </style>
     </head>
     <body>
-        <textarea name="Text1" cols="40" rows="5"></textarea>
-        <a href="{{ route('postArticle') }}"
-            onclick="event.preventDefault();
-                     document.getElementById('submit-form').submit();">
-            Post
-        </a>    
+        <form id="submit-form" action="{{ route('postArticle') }}" method="POST">
+            <label>Headline</label>
+            <input name="headline" value="{{ old('headline') }}" required></input>
+            <br>
+            <label>Content</label>
+            <textarea name="content" cols="40" rows="5" value="{{ old('caption') }}" required></textarea>
+            <br>
+            <a href="{{ route('postArticle') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('submit-form').submit();">
+                Post
+            </a>    
+        </form>
 
         <a href="{{ route('register') }}">
             Register
@@ -151,8 +158,6 @@
             Logout
         </a>
 
-        <form id="submit-form" action="{{ route('postArticle') }}" method="POST" style="display: none;">
-        </form>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
         </form>

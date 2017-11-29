@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Data;
+use Log;
 
 class AdminController extends Controller
 {
@@ -13,13 +14,16 @@ class AdminController extends Controller
     public function index() {
         return view('adminHome');
     }
-    public function postArticle() {
-        Data::create([
+    public function postArticle(array $data) {
+        Log::info('working!?!?');
+        return Data::updateOrCreate([
+            'headline' => $data->headline,
+        ],
+        [
             'name' => 'Article',
             'type' => 'Article',
-            'headline' => 'Article',
-            'caption' => 'Article',
-            'source_update_time' => 'Article',
+            'caption' => $data->content,
+            'source_update_time' => date("Y-M-d H:i:s"),
         ]);
     }
 }
