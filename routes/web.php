@@ -16,10 +16,5 @@ Route::get('/data', 'DataController@render');
 Route::get('/contact', 'ContactController@render');
 Route::get('/dataPopulate', 'DataController@populate');
 Route::get('/adminHome', 'AdminController@index')->name('adminHome');
-Route::post('/postArticle', 'AdminController@postArticle')->name('postArticle');
-
-/*Route::post('/postArticle', function(Request $request) {
-    return redirect()->action('AdminController@postArticle', ['request' => $request]);
-})->name('postArticle');*/
 
 Auth::routes();

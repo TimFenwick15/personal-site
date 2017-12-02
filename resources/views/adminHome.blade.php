@@ -139,7 +139,7 @@
             <input name="headline" value="{{ old('headline') }}" required></input>
             <br>
             <label>Content</label>
-            <textarea name="content" cols="40" rows="5" value="{{ old('caption') }}" required></textarea>
+            <textarea name="caption" cols="40" rows="5" value="{{ old('caption') }}" required></textarea>
             <br>
             <a href="{{ route('postArticle') }}"
                 onclick="event.preventDefault();
