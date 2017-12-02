@@ -15,7 +15,6 @@ Route::get('/home', 'HomeController@serverRendered')->name('serverRendered');
 Route::get('/data', 'DataController@render');
 Route::get('/contact', 'ContactController@render');
 Route::get('/dataPopulate', 'DataController@populate');
+Route::get('/adminHome', 'AdminController@index')->name('adminHome');
 
 Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
