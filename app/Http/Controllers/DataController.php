@@ -94,8 +94,15 @@ class DataController extends Controller
                 // 2017-10-07 17:21:25
                 $dateArray = explode('<read_at>', $dataRequest)[$i + 1];
                 $dateString = explode('</read_at>', $dateArray)[0];
-                $dateObject = DateTime::createFromFormat('D M d H:i:s e Y', $dateString);
-                $formattedDate = explode('.', get_object_vars($dateObject)['date'])[0];
+
+                // The Goodreads read date is optional so be careful about missing values
+                $formattedDate = '';
+                if ($dateString !== '') {
+                    $dateObject = DateTime::createFromFormat('D M d H:i:s e Y', $dateString);
+                    $formattedDate = explode('.', get_object_vars($dateObject)['date'])[0];
+                }
+                else
+                    $formattedDate = 'Read date: Unkown';
                 Data::updateOrCreate([
                     'name' => 'Goodreads',
                     'type' => 'Data',
