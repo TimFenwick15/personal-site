@@ -133,19 +133,14 @@ class DataController extends Controller
             ->buildOauth($twitterUrl, $twitterRequestMethod)
             ->performRequest()
         );
-
-        // We don't want replies (because they won't make sense out of context)
-        // and we don't want Goodreads updates because we're already fetching Goodreads data directly
         foreach ($twitterResponse as $tweet) {
-            $storeThisTweet = true;
-            $tweetContentURLs = $tweet->entities->urls;
-            foreach ($tweetContentURLs as $tweetContentURL) {
-                if (strpos($tweetContentURL['expanded_url'], 'goodreads'))
-                    $storeThisTweet = false;
-            }
-            if (!is_null($tweet->in_reply_to_status_id))
-                $storeThisTweet = false;
-            if ($storeThisTweet) {
+            // If the Tweet contains a URL or image, drop it because it isn't trivial to make this show well on the UI
+            // If the Tweet is a reply, drop it because it won't make sense out of context
+            if (
+                !property_exists($tweet->entities, 'media') &&
+                !sizeof($tweet->entities->urls) &&
+                is_null($tweet->in_reply_to_status_id)
+            ) {
                 // Format the date. eg Fri Feb 02 18:40:21 +0000 2018
                 $tweetDate = $tweet->created_at;
                 $tweetDateObject = DateTime::createFromFormat('D M d H:i:s e Y', $tweetDate);
@@ -158,7 +153,7 @@ class DataController extends Controller
                     'name' => 'Tweet',
                     'type' => 'Data',
                     'headline' => 'I posted on Twitter',
-                    'caption' => $tweet->text, // encoded chars are going to be an issue...
+                    'caption' => $tweet->text,
                     'main_content_url' => $tweetURL,
                     'image_url' => asset('image/Twitter_Logo_Blue.svg'),
                     'source_update_time' => $tweetDateFormatted

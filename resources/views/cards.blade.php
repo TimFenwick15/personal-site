@@ -4,7 +4,8 @@
       <img src="{{ $card['image_url'] ? $card['image_url'] : asset('image/placeholder.png') }}"></img>
     </div>
     <div class="headline" tabindex="1">{{ $card['headline'] }}</div>
-    <div class="caption" tabindex="1">{{ $card['caption'] }}</div>
+    <div class="caption" tabindex="1">{!! nl2br(e($card['caption'])) !!}</div>
+    <br />
     @if ($card['source_update_time'])
       <div class="caption" tabindex="1">Updated: {{ $card['source_update_time'] }}</div>
     @endif
