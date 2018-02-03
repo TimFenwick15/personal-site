@@ -9,7 +9,6 @@ use Log;
 use DateTime;
 
 use App\Classes\TwitterAPIExchange;
-//require_once('TwitterAPIExchange.php');
 
 class DataController extends Controller
 {
@@ -127,12 +126,45 @@ class DataController extends Controller
         );
         $twitterUrl = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
         $twitterRequestMethod = 'GET';
-        $twitterGetfield = '?screen_name=' . env('twitter_username');
+        $twitterGetfields = '?screen_name=' . env('twitter_username') . '&count=5';
         $twitter = new TwitterAPIExchange($twitterSettings);
-        Log::info($twitter->setGetfield($twitterGetfield)
+        $twitterResponse = json_decode($twitter
+            ->setGetfield($twitterGetfields)
             ->buildOauth($twitterUrl, $twitterRequestMethod)
             ->performRequest()
         );
+
+        // We don't want replies (because they won't make sense out of context)
+        // and we don't want Goodreads updates because we're already fetching Goodreads data directly
+        foreach ($twitterResponse as $tweet) {
+            $storeThisTweet = true;
+            $tweetContentURLs = $tweet->entities->urls;
+            foreach ($tweetContentURLs as $tweetContentURL) {
+                if (strpos($tweetContentURL['expanded_url'], 'goodreads'))
+                    $storeThisTweet = false;
+            }
+            if (!is_null($tweet->in_reply_to_status_id))
+                $storeThisTweet = false;
+            if ($storeThisTweet) {
+                // Format the date. eg Fri Feb 02 18:40:21 +0000 2018
+                $tweetDate = $tweet->created_at;
+                $tweetDateObject = DateTime::createFromFormat('D M d H:i:s e Y', $tweetDate);
+                $tweetDateFormatted = explode('.', get_object_vars($tweetDateObject)['date'])[0];
+
+                // Build the URL to the Tweet
+                $tweetURL = 'https://twitter.com/' . env('twitter_username') . '/status/' . $tweet->id_str;
+
+                Data::updateOrCreate([
+                    'name' => 'Tweet',
+                    'type' => 'Data',
+                    'headline' => 'I posted on Twitter',
+                    'caption' => $tweet->text, // encoded chars are going to be an issue...
+                    'main_content_url' => $tweetURL,
+                    'image_url' => asset('image/Twitter_Logo_Blue.svg'),
+                    'source_update_time' => $tweetDateFormatted
+                ]);
+            }
+        }
     }
     public function render() {
         $data = collect(DB::select('SELECT * FROM data ORDER BY source_update_time DESC'))
