@@ -8,6 +8,9 @@ use App\Data;
 use Log;
 use DateTime;
 
+use App\Classes\TwitterAPIExchange;
+//require_once('TwitterAPIExchange.php');
+
 class DataController extends Controller
 {
     public function populate() {
@@ -114,8 +117,23 @@ class DataController extends Controller
                 ]);
             }
         }
-    }
 
+        // Twitter
+        $twitterSettings = array(
+            'oauth_access_token' => env('oauth_access_token'),
+            'oauth_access_token_secret' => env('oauth_access_token_secret'),
+            'consumer_key' => env('consumer_key'),
+            'consumer_secret' => env('consumer_secret')
+        );
+        $twitterUrl = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+        $twitterRequestMethod = 'GET';
+        $twitterGetfield = '?screen_name=' . env('twitter_username');
+        $twitter = new TwitterAPIExchange($twitterSettings);
+        Log::info($twitter->setGetfield($twitterGetfield)
+            ->buildOauth($twitterUrl, $twitterRequestMethod)
+            ->performRequest()
+        );
+    }
     public function render() {
         $data = collect(DB::select('SELECT * FROM data ORDER BY source_update_time DESC'))
             ->map(function($x){ return (array) $x; })

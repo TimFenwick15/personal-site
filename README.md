@@ -28,6 +28,13 @@ A disadvantage of my lazy loaded content is the page may not be fully loaded if 
 
 I am using 'Skip to content' links which toggle to visible using CSS if a user is using tab to navigate the page.
 
+### Twitter Integration
+The Twitter API uses OAuth which requires several steps before a valid request can be made.
+
+I'm using the https://github.com/J7mbo/twitter-api-php repo to acomplish this. :heart:
+
+The TwitterAPIExchange.php file in the Controllers directory is lifted from there.
+
 ### Problems
 Currently, if you visit /logout while not authenticated, you get an error page.
 It's not that this is something I expect a user to do, but I'd rather the app didn't blow up if someone attempts this.
