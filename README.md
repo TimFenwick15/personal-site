@@ -35,6 +35,8 @@ I'm using the https://github.com/J7mbo/twitter-api-php repo to acomplish this. :
 
 The TwitterAPIExchange.php file in the Controllers directory is lifted from there.
 
+I didn't see this in the API docs; if a Tweet is longer than 140 characters, it will be truncated by default. You should include $extended=true in the URL if you want to recieve the full Tweet, regardless of length. In this case, the Tweet will be under the "full_text" JSON key instead of "text".
+
 ### Problems
 Currently, if you visit /logout while not authenticated, you get an error page.
 It's not that this is something I expect a user to do, but I'd rather the app didn't blow up if someone attempts this.

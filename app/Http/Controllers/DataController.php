@@ -94,9 +94,14 @@ class DataController extends Controller
                 // Sat Oct 07 17:21:25 -0700 2017
                 // into:
                 // 2017-10-07 17:21:25
+                // As of late 2017, Goodreads read dates could be under a <read_at> or <date_updated> node
+                // If there is a <read_at> value, use it. Else, use the <date_updated>
                 $dateArray = explode('<read_at>', $dataRequest)[$i + 1];
                 $dateString = explode('</read_at>', $dateArray)[0];
-
+                if ($dateString === '') {
+                    $dateArray = explode('<date_updated>', $dataRequest)[$i + 1];
+                    $dateString = explode('</date_updated>', $dateArray)[0];
+                }
                 // The Goodreads read date is optional so be careful about missing values
                 $formattedDate = '';
                 if ($dateString !== '') {
@@ -126,7 +131,7 @@ class DataController extends Controller
         );
         $twitterUrl = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
         $twitterRequestMethod = 'GET';
-        $twitterGetfields = '?screen_name=' . env('twitter_username') . '&count=5';
+        $twitterGetfields = '?screen_name=' . env('twitter_username') . '&count=5&tweet_mode=extended';
         $twitter = new TwitterAPIExchange($twitterSettings);
         $twitterResponse = json_decode($twitter
             ->setGetfield($twitterGetfields)
@@ -153,7 +158,7 @@ class DataController extends Controller
                     'name' => 'Tweet',
                     'type' => 'Data',
                     'headline' => 'I posted on Twitter',
-                    'caption' => $tweet->text,
+                    'caption' => $tweet->full_text,
                     'main_content_url' => $tweetURL,
                     'image_url' => asset('image/Twitter_Logo_Blue.svg'),
                     'source_update_time' => $tweetDateFormatted
