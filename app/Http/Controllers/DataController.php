@@ -50,18 +50,20 @@ class DataController extends Controller
         $dataRequest = @file_get_contents('https://api.github.com/users/timfenwick15/events', false, $context);
         if ($dataRequest && strpos($http_response_header[0], '200')) {
             $data = json_decode($dataRequest, true);
-            for ($i = 0; $i < $numberOfRecords; $i++) {
-                Data::updateOrCreate([
-                    'name' => 'GitHub',
-                    'type' => 'Data',
-                    'headline' => explode('/', $data[0]['repo']['name'])[1],
-                    'caption' => 'Repo updated',
-                    'image_url' => 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png',
-                ],
-                [
-                    'main_content_url' => str_replace('/repos', '', str_replace('api.', '', $data[0]['repo']['url'])),
-                    'source_update_time' => str_replace('Z', '', str_replace('T', ' ', $data[0]['created_at']))
-                ]);
+            if (!empty($data)) {
+                for ($i = 0; $i < $numberOfRecords; $i++) {
+                    Data::updateOrCreate([
+                        'name' => 'GitHub',
+                        'type' => 'Data',
+                        'headline' => explode('/', $data[0]['repo']['name'])[1],
+                        'caption' => 'Repo updated',
+                        'image_url' => 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png',
+                    ],
+                    [
+                        'main_content_url' => str_replace('/repos', '', str_replace('api.', '', $data[0]['repo']['url'])),
+                        'source_update_time' => str_replace('Z', '', str_replace('T', ' ', $data[0]['created_at']))
+                    ]);
+                }
             }
         }
 
