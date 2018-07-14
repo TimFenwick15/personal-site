@@ -162,7 +162,7 @@ class DataController extends Controller
                     'headline' => 'I posted on Twitter',
                     'caption' => $tweet->full_text,
                     'main_content_url' => $tweetURL,
-                    'image_url' => asset('image/Twitter_Logo_Blue.svg'),
+                    'image_url' => secure_asset('image/Twitter_Logo_Blue.svg'),
                     'source_update_time' => $tweetDateFormatted
                 ]);
             }

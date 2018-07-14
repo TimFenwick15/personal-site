@@ -139,6 +139,6 @@
             <div class='content'>You can find me here.</div>
             <div class='card-container'></div>
         </div>
-    <script src="{{ asset('js/loadCards.js') }}"></script>
+    <script src="{{ secure_asset('js/loadCards.js') }}"></script>
     </body>
 </html>

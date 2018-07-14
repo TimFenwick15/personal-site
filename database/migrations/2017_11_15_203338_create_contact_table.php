@@ -39,7 +39,7 @@ class CreateContactTable extends Migration
             'headline' => 'Twitter',
             'caption' => 'My Twitter Profile',
             'main_content_url' => 'https://twitter.com/timfenwick15',
-            'image_url' => asset('image/Twitter_Logo_Blue.svg')
+            'image_url' => secure_asset('image/Twitter_Logo_Blue.svg')
         ]);
         Contact::create([
             'name' => 'LinkedIn Profile',
@@ -47,7 +47,7 @@ class CreateContactTable extends Migration
             'headline' => 'LinkedIn',
             'caption' => 'My LinkedIn Profile',
             'main_content_url' => 'https://www.linkedin.com/in/timothy-fenwick-0a23039b/',
-            'image_url' => asset('image/linkedin.png')
+            'image_url' => secure_asset('image/linkedin.png')
         ]);
     }
 

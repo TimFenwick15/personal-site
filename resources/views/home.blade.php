@@ -140,11 +140,11 @@
             </noscript>
         @endif
         <div class="intro-pane page">
-            <div id="introduction" class="content" tabindex="1">Hello.<br>My name is Tim.</div>
+            <div id="introduction" class="content" tabindex="1">Hello 👋☕️<br>My name is Tim.</div>
         </div>
 
         <div class="feed-pane page">
-            <div id="feed" class="content data" tabindex="1">Here's what I've been up to.</div>
+            <div id="feed" class="content data" tabindex="1">Here's what I've been up to 💻📚</div>
             <a class="nav-link" href="#contact" tabindex="1">Press Tab to view this Section. Press Enter to go to the next Section</a>
             <div class="card-container">
                 @if ($serverRender)
@@ -154,7 +154,7 @@
         </div>
 
         <div class='contact-pane page'>
-            <div id="contact" class="content contact" tabindex="1">You can find me here.</div>
+            <div id="contact" class="content contact" tabindex="1">You can find me here 📱🗺️</div>
             <a class="nav-link" href="#feed" tabindex="1">Press Tab to view this Section. Press Enter to go to the previous Section</a>
             <div class="card-container">
                 @if ($serverRender)
@@ -166,7 +166,7 @@
         <button id="more" tabindex="-1" style="display:none">More</button>
         <div class="loading invisible">Loading...</div>
     @if (!$serverRender)
-        <script src="{{ asset('js/script.js') }}"></script>
+        <script src="{{ secure_asset('js/script.js') }}"></script>
     @endif
     </body>
 </html>

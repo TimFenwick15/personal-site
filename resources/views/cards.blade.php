@@ -1,7 +1,7 @@
 @foreach ($cards as $card)
   <div class="card {{ $visible ? '' : 'invisible' }}">
     <div class="image-circle">
-      <img src="{{ $card['image_url'] ? $card['image_url'] : asset('image/placeholder.png') }}"></img>
+      <img src="{{ $card['image_url'] ? $card['image_url'] : secure_asset('image/placeholder.png') }}"></img>
     </div>
     <div class="headline" tabindex="1">{{ $card['headline'] }}</div>
     <div class="caption" tabindex="1">{!! nl2br(e($card['caption'])) !!}</div>
