@@ -71,6 +71,9 @@
                 display: inline-block;
                 vertical-align: top;
                 line-height: 50px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
             }
             .card > .caption {
                 display: block;
