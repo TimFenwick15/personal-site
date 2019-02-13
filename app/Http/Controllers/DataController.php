@@ -57,7 +57,7 @@ class DataController extends Controller
                         'type' => 'Data',
                         'headline' => explode('/', $data[0]['repo']['name'])[1],
                         'caption' => 'Repo updated',
-                        'image_url' => 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png',
+                        'image_url' => secure_asset('image/GitHub-Mark.png'),
                     ],
                     [
                         'main_content_url' => str_replace('/repos', '', str_replace('api.', '', $data[0]['repo']['url'])),

@@ -31,7 +31,7 @@ class CreateContactTable extends Migration
             'headline' => 'GitHub',
             'caption' => 'My GitHub Profile',
             'main_content_url' => 'https://github.com/timfenwick15',
-            'image_url' => 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'
+            'image_url' => secure_asset('image/GitHub-Mark.png')
         ]);
         Contact::create([
             'name' => 'Twitter Profile',
