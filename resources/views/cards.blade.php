@@ -11,7 +11,11 @@
     @endif
     @if ($card['main_content_url'])
       <div class="read-more">
-        <a href="{{ $card['main_content_url'] }}" target="_blank" tabindex="1">Read more...</a>
+        @if ($card['type'] === 'Download')
+          <a href="{{ $card['main_content_url'] }}" download tabindex="1">Read more...</a>
+        @else
+          <a href="{{ $card['main_content_url'] }}" target="_blank" tabindex="1">Read more...</a>
+        @endif
       </div>
     @endif
   </div>

@@ -49,6 +49,14 @@ class CreateContactTable extends Migration
             'main_content_url' => 'https://www.linkedin.com/in/timothy-fenwick-0a23039b/',
             'image_url' => secure_asset('image/linkedin.png')
         ]);
+        Contact::create([
+            'name' => 'My CV',
+            'type' => 'Contact',
+            'headline' => 'CV',
+            'caption' => 'My CV',
+            'main_content_url' => 'https://www.dropbox.com/s/e69n9vgc45su02k/Timothy%20Fenwick%20CV.pdf?dl=0/',
+            'image_url' => secure_asset('image/placeholder.png')
+        ]);
     }
 
     /**

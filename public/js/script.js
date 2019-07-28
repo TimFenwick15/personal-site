@@ -1,14 +1,43 @@
 'use strict'
 
+const addClass = (element, className) => {
+  const currentClassName = element.className
+  if (currentClassName.indexOf(className) === -1) {
+    element.className += ` ${className}`
+  }
+}
 const sectionFactory = (position, dataTypeArg) => {
   const dataType = dataTypeArg
   const section = document.getElementsByClassName('page')[position]
   const title = section.getElementsByClassName('content')[0]
   let cardContainer = null
   let isRendered = true
+  let numberOfCardsToRender = 0
   if (dataType) {
     cardContainer = section.getElementsByClassName('card-container')[0]
     isRendered = false
+  }
+  const render = () => {
+    const cardList = Array.from(cardContainer.getElementsByClassName('card'))
+    const moreCardsButton = section.getElementsByClassName('more-cards')[0]
+    const alreadyRenderedCards = numberOfCardsToRender
+    if (cardList.length > numberOfCardsToRender) {
+      if (cardList.length > numberOfCardsToRender + 10) {
+        numberOfCardsToRender += 10
+      }
+      else {
+        numberOfCardsToRender = cardList.length
+      }
+    }
+    if (cardList.length === numberOfCardsToRender) {
+      addClass(moreCardsButton, 'transition-out')
+    }
+    else {
+      addClass(moreCardsButton, 'transition-in')
+    }
+    for (let i = alreadyRenderedCards; i < numberOfCardsToRender; i++) {
+      addClass(cardList[i], 'transition-in')
+    }
   }
   return {
     title,
@@ -18,7 +47,7 @@ const sectionFactory = (position, dataTypeArg) => {
         block: "start", inline: "nearest", behavior: 'smooth'
       })
     },
-    render: () => {
+    load: () => {
       if (!isRendered) {
         isRendered = true
         const loading = document.getElementsByClassName('loading')[0]
@@ -27,17 +56,12 @@ const sectionFactory = (position, dataTypeArg) => {
           .then(x => x.text())
           .then(x => {
             cardContainer.innerHTML = x
-
-            // We need a short delay here or the content it rendered before the styles apply
-            setTimeout(
-              () => {
-                loading.className += ' transition-out'
-                Array.from(cardContainer.getElementsByClassName('card'))
-                  .forEach(card => card.className += ' transition-in')
-              }, 100)
+            addClass(loading, 'transition-out')
+            setTimeout(render, 100)
           })
       }
-    }
+    },
+    render
   }
 }
 
@@ -52,7 +76,12 @@ const page = (pageSectionsArg) => {
   }
   return {
     registerEventListeners: () => {
-      window.addEventListener('scroll', () => setTimeout(() => getCurrentSection().render(), 500))
+      window.addEventListener('scroll', () => setTimeout(() => getCurrentSection().load(), 500))
+      
+      Array.from(document.getElementsByClassName('more-cards')).forEach(button => {
+        button.addEventListener('click', () => getCurrentSection().render())
+      })
+
       document.getElementById('more').addEventListener('click', () => getCurrentSection(1).scrollTo())
     }
   }

@@ -15,13 +15,12 @@
             html, body {
                 background-color: #fff;
                 color: #000000;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
+                font-family: 'helvetica', sans-serif;
                 height: 100vh;
                 margin: 0;
             }
             .page {
-                min-height: 130vh;
+                min-height: 150vh;
             }
             .intro-pane {
                 background-color: pink;
@@ -37,6 +36,7 @@
                 position: sticky;
                 top: -1px;
                 background-color: inherit;
+                z-index: 1;
             }
             .card-container {
                 display: flex;
@@ -87,15 +87,6 @@
                 text-decoration: none;
                 display: block;
             }
-            /* @media only screen and (orientation: portrait) { */
-            @media only screen and (max-width: 900px) {
-                .card {
-                    width: 80%;
-                }
-                .content {
-                    font-size: 2rem;
-                }
-            }
             #more {
                 position: fixed;
                 /* left: 50%;
@@ -125,14 +116,67 @@
             }
             .invisible {
                 opacity: 0;
+                display: none;
             }
             .transition-in {
+                display: block;
                 opacity: 1;
                 transition: opacity 0.5s ease-in-out;
             }
             .transition-out {
                 opacity: 0;
                 transition: opacity 0.5s ease-in-out;
+            }
+            button {
+                display: inline-block;
+                border: none;
+                padding: 1rem 2rem;
+                margin: 0 auto;
+                text-decoration: none;
+                background: #ffffff;
+                color: #000000;
+                font-family: sans-serif;
+                font-size: 2rem;
+                cursor: pointer;
+                text-align: center;
+                box-shadow: rgba(0, 0, 0, 0.5) 0 0 8px 0;
+                border-radius: 4px;
+            }
+            .personal-image {
+                background: white;
+                box-shadow: rgba(0, 0, 0, 0.5) 0 0 8px 0;
+                border-radius: 4px;
+                padding: 10px 10px 50px 10px;
+                width: 50%;
+                display: block;
+                position: absolute;
+                transition: all 0.5s ease;
+            }
+            .flight {
+                margin: 5vh auto auto 40%;
+                transform: rotate(5deg);
+            }
+            .sheffield {
+                margin: 40vh auto auto 10%;
+                transform: rotate(-5deg);
+            }
+            .flight:hover, .sheffield:hover{
+                transform: rotate(0deg) scale(1.2);
+                box-shadow: rgba(0, 0, 0, 0.5) 0 0 16px 0;
+                z-index: 2;
+            }
+            @media only screen and (max-width: 900px) {
+                .card {
+                    width: 80%;
+                }
+                .content {
+                    font-size: 2rem;
+                }
+                .personal-image {
+                    width: 70%;
+                    margin: 10vh auto;
+                    position: relative;
+                }
             }
         </style>
     </head>
@@ -144,6 +188,8 @@
         @endif
         <div class="intro-pane page">
             <div id="introduction" class="content" tabindex="1">Hello 👋☕️<br>My name is Tim.</div>
+            <img class='personal-image flight' alt="View through plane window" src="{{ secure_asset('image/personal.jpg') }}"></img>
+            <img class='personal-image sheffield' alt="Image of Sheffield sunset" src="{{ secure_asset('image/sheffield.jpg') }}"></img>
         </div>
 
         <div class="feed-pane page">
@@ -154,6 +200,7 @@
                     @include('cards', ['cards' => $data, 'visible' => true])
                 @endif
             </div>
+            <button class="more-cards invisible" tabindex="1">More</button>
         </div>
 
         <div class='contact-pane page'>
@@ -164,6 +211,7 @@
                     @include('cards', ['cards' => $contact, 'visible' => true])
                 @endif
             </div>
+            <button class="more-cards invisible" tabindex="1">More</button>
         </div>
 
         <button id="more" tabindex="-1" style="display:none">More</button>
