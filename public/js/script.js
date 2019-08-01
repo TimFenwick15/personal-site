@@ -89,6 +89,7 @@ const page = (pageSectionsArg) => {
 
 const intro = sectionFactory(0)
 const feed = sectionFactory(1, 'data')
-const contact = sectionFactory(2, 'contact')
-const p = page({intro, feed, contact})
+const tech = sectionFactory(2, 'tech')
+const contact = sectionFactory(3, 'contact')
+const p = page({intro, feed, tech, contact})
 p.registerEventListeners()

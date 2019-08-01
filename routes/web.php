@@ -13,6 +13,7 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@serverRendered')->name('serverRendered');
 Route::get('/data', 'DataController@render');
+Route::get('/tech', 'TechController@render');
 Route::get('/contact', 'ContactController@render');
 Route::get('/dataPopulate', 'DataController@populate');
 Route::get('/adminHome', 'AdminController@index')->name('adminHome');

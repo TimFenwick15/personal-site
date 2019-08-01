@@ -28,6 +28,9 @@
             .feed-pane {
                 background-color: #ffffff;
             }
+            .tech-pane {
+                background-color: #FFF5BA;
+            }
             .contact-pane {
                 background-color: #ADD8E6;
             }
@@ -188,13 +191,14 @@
         @endif
         <div class="intro-pane page">
             <div id="introduction" class="content" tabindex="1">Hello 👋☕️<br>My name is Tim.</div>
+            <!-- <div id="introduction" class="content" tabindex="1">Hello, my name is Tim 👋<br>I'm a software engineer from Sheffield ❤️</div> -->
             <img class='personal-image flight' alt="View through plane window" src="{{ secure_asset('image/personal.jpg') }}"></img>
             <img class='personal-image sheffield' alt="Image of Sheffield sunset" src="{{ secure_asset('image/sheffield.jpg') }}"></img>
         </div>
 
         <div class="feed-pane page">
             <div id="feed" class="content data" tabindex="1">Here's what I've been up to 💻📚</div>
-            <a class="nav-link" href="#contact" tabindex="1">Press Tab to view this Section. Press Enter to go to the next Section</a>
+            <a class="nav-link" href="#tech" tabindex="1">Press Tab to view this Section. Press Enter to go to the next Section</a>
             <div class="card-container">
                 @if ($serverRender)
                     @include('cards', ['cards' => $data, 'visible' => true])
@@ -203,6 +207,17 @@
             <button class="more-cards invisible" tabindex="1">More</button>
         </div>
 
+        <div class='tech-pane page'>
+            <div id="tech" class="content tech" tabindex="1">Tech 💻</div>
+            <a class="nav-link" href="#contact" tabindex="1">Press Tab to view this Section. Press Enter to go to the next Section</a>
+            <div class="card-container">
+                @if ($serverRender)
+                    @include('cards', ['cards' => $tech, 'visible' => true])
+                @endif
+            </div>
+            <button class="more-cards invisible" tabindex="1">More</button>
+        </div>
+        
         <div class='contact-pane page'>
             <div id="contact" class="content contact" tabindex="1">You can find me here 📱🗺️</div>
             <a class="nav-link" href="#feed" tabindex="1">Press Tab to view this Section. Press Enter to go to the previous Section</a>
@@ -218,6 +233,7 @@
         <div class="loading invisible">Loading...</div>
     @if (!$serverRender)
         <script src="{{ secure_asset('js/script.js') }}"></script>
+        <!-- <script src="js/script.js"></script> -->
     @endif
     </body>
 </html>

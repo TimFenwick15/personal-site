@@ -14,6 +14,14 @@ Instead, make a seperate controller with each method to control a backend resour
 You can say $ php artisan make:request <request_name>
 The advantage of doing this is you get a rules method where you can specify the fields that must exists for the server to accept a request.
 This also handles authorisation.
+
+To add a new page:
+- Make a new controller
+- Make a new PHP file in the App folder
+- Add a route to web.php
+- Add a new database migration
+- Log into the Homestead VM ($ vagrant ssh)
+- Run database migrations
     
 ### If JavaScript is disabled
 If JavaScript is disabled, the page will show a link offering a server rendered version of the page.
