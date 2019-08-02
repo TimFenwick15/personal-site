@@ -7,6 +7,7 @@ const addClass = (element, className) => {
   }
 }
 const sectionFactory = (position, dataTypeArg) => {
+  const cardsMax = 9
   const dataType = dataTypeArg
   const section = document.getElementsByClassName('page')[position]
   const title = section.getElementsByClassName('content')[0]
@@ -22,8 +23,8 @@ const sectionFactory = (position, dataTypeArg) => {
     const moreCardsButton = section.getElementsByClassName('more-cards')[0]
     const alreadyRenderedCards = numberOfCardsToRender
     if (cardList.length > numberOfCardsToRender) {
-      if (cardList.length > numberOfCardsToRender + 10) {
-        numberOfCardsToRender += 10
+      if (cardList.length > numberOfCardsToRender + cardsMax) {
+        numberOfCardsToRender += cardsMax
       }
       else {
         numberOfCardsToRender = cardList.length

@@ -13,7 +13,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: pink;
                 color: #000000;
                 font-family: 'helvetica', sans-serif;
                 height: 100vh;
@@ -21,9 +21,6 @@
             }
             .page {
                 min-height: 150vh;
-            }
-            .intro-pane {
-                background-color: pink;
             }
             .feed-pane {
                 background-color: #ffffff;
@@ -190,14 +187,14 @@
             </noscript>
         @endif
         <div class="intro-pane page">
-            <div id="introduction" class="content" tabindex="1">Hello 👋☕️<br>My name is Tim.</div>
+            <div id="introduction" class="content" tabindex="1">Hello 👋<br>My name is Tim.</div>
             <!-- <div id="introduction" class="content" tabindex="1">Hello, my name is Tim 👋<br>I'm a software engineer from Sheffield ❤️</div> -->
             <img class='personal-image flight' alt="View through plane window" src="{{ secure_asset('image/personal.jpg') }}"></img>
             <img class='personal-image sheffield' alt="Image of Sheffield sunset" src="{{ secure_asset('image/sheffield.jpg') }}"></img>
         </div>
 
         <div class="feed-pane page">
-            <div id="feed" class="content data" tabindex="1">Here's what I've been up to 💻📚</div>
+            <div id="feed" class="content data" tabindex="1">What I've been up to 📚</div>
             <a class="nav-link" href="#tech" tabindex="1">Press Tab to view this Section. Press Enter to go to the next Section</a>
             <div class="card-container">
                 @if ($serverRender)
@@ -219,7 +216,7 @@
         </div>
         
         <div class='contact-pane page'>
-            <div id="contact" class="content contact" tabindex="1">You can find me here 📱🗺️</div>
+            <div id="contact" class="content contact" tabindex="1">You can find me here 🗺️</div>
             <a class="nav-link" href="#feed" tabindex="1">Press Tab to view this Section. Press Enter to go to the previous Section</a>
             <div class="card-container">
                 @if ($serverRender)
