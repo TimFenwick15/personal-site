@@ -62,6 +62,15 @@ class CreateTechTable extends Migration
             'image_url' => secure_asset('image/placeholder.png'),
             'article_text' => 'Example project...'
         ]);
+        Tech::create([
+            'name' => 'C++',
+            'type' => 'Language',
+            'headline' => 'C++',
+            'caption' => 'I\'m currently learning C++. I am reading Game Programming in C++ by Sanjay Madhav. Exercise answers can be found in the project below',
+            'main_content_url' => 'https://github.com/TimFenwick15/game-programming',
+            'image_url' => secure_asset('image/c++.png'),
+            'article_text' => 'Example project...'
+        ]);
     }
 
     /**

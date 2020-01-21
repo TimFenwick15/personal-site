@@ -57,6 +57,17 @@ class CreateContactTable extends Migration
             'main_content_url' => 'https://www.dropbox.com/s/e69n9vgc45su02k/Timothy%20Fenwick%20CV.pdf?dl=0/',
             'image_url' => secure_asset('image/placeholder.png')
         ]);
+        Contact::create([
+            'name' => 'News Article',
+            'type' => 'Contact',
+            'headline' => 'News Article',
+            'caption' => 'I have been involved with a project to repower refuse collection vehicles. The project was featured by various media outlets, including the BBC',
+            'main_content_url' => 'https://www.bbc.co.uk/news/av/uk-england-south-yorkshire-49557954/sheffield-trials-waste-powered-bin-lorries-to-clean-up-streets',
+            'image_url' => secure_asset('image/placeholder.png')
+        ]);
+
+
+        https://www.bbc.co.uk/news/av/uk-england-south-yorkshire-49557954/sheffield-trials-waste-powered-bin-lorries-to-clean-up-streets
     }
 
     /**
