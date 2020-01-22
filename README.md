@@ -52,3 +52,7 @@ It's not that this is something I expect a user to do, but I'd rather the app di
 Haven't worked out how to authenticate api methods. I've tried:
 - Adding middleware to the route - this seems to block the request
 - In postArticleRequest, use Auth::check() in the authorize method - this is returning null. https://laravel.io/forum/03-22-2016-authcheck-not-working suggested adding 'web' middleware but then I run into the same problem above that middleware seems to block the request without an error - try again, blocking this endpoint for now
+
+### Credit
+C and C++ images taken from https://www.pngguru.com/ (free for non-comercial use :heart:)
+
